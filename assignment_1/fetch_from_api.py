@@ -6,9 +6,6 @@ import xlsxwriter
 
 result = requests.get('https://606f76d385c3f0001746e93d.mockapi.io/api/v1/auditlog')
 
-# print(result.status_code)
-# import pdb
-# pdb.set_trace()
 json_list = result.json()
 
 id_val = []
@@ -24,10 +21,6 @@ for i in json_list:
     act_val.append(i.get('action'))
     u_id_val.append(i.get('user_id'))
     criti_val.append(i.get('criticality'))
-
-writer = pd.ExcelWriter('data_from_api.xlsx', engine='xlsxwriter')
-
-writer.save()
 
 df = pd.DataFrame({'id': id_val,
                    'description': desc_val,
